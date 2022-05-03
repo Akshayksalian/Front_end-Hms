@@ -162,7 +162,7 @@ export default function LoginAndReg() {
                   </div>
                 </div>
                 <div className="card-body p-lg-5">
-                  <h3 className="mb-4">Get started with Jassa</h3>
+                  <h3 className="mb-4">Let's Get Started ✨🎉</h3>
                   <p className="text-muted text-sm mb-5">
                     “Acquiring the right talent is the most important key to
                     growth. Hiring was – and still is – the most important thing
@@ -248,7 +248,7 @@ export default function LoginAndReg() {
                 style={{ transform: "rotate(10deg)" }}
               />
               <h1 className="mb-4 text-secondary">
-                Hiring management system <br className="d-none d-lg-inline" />
+                Hiring Management System <br className="d-none d-lg-inline" />
               </h1>
               <p class="text-secondary">
                 <em>

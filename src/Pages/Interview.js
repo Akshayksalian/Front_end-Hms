@@ -8,15 +8,9 @@ export default function Interview() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const url1 = "http://localhost:8080/hms/web/interviewers/assign/" + 3;
+  const url1 = "http://localhost:8080/hms/web/interviewers/assign/" + id;
 
   const interviewPut = (event, availability, interviewers_id) => {
-    const data1 = {
-      interviewerIdentity: {
-        availability: availability,
-        interviewers_id: interviewers_id,
-      },
-    };
     axios
       .post(url1, {
         interviewerIdentity: {
@@ -27,7 +21,7 @@ export default function Interview() {
       .then(function (response) {
         console.log(response);
       });
-    // // navigate(`/job`);
+    alert("Assigned successfully");
   };
 
   const url =
@@ -58,7 +52,6 @@ export default function Interview() {
       <div className="container4">
         <Header name="Interviewers List ..." />
         <div className="main,body4"></div>
-
         <Table striped bordered hover variant="dark" className="my-2">
           <thead>
             <tr>
@@ -86,8 +79,7 @@ export default function Interview() {
                 </td>
 
                 <td className="text-center">
-                  <button
-                    type="button"
+                  <Button
                     variant="success"
                     className="candidate_button"
                     onClick={(event) =>
@@ -99,7 +91,7 @@ export default function Interview() {
                     }
                   >
                     Assign
-                  </button>
+                  </Button>
                 </td>
               </tr>
             ))}

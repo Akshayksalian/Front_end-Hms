@@ -54,7 +54,7 @@ export default function Job() {
 
                 <div className="card-body p-4">
                   <div className="text-center">
-                    <h3 className="fw-bolder">Web developer</h3>
+                    <h3 className="fw-bolder">Web Developer</h3>
                     <p>
                       Web developers create and maintain websites. They are also
                       responsible for the site's technical aspects.

@@ -46,7 +46,7 @@ export default function Candidate() {
 
   function check(status) {
     console.log(status);
-    if (status === "Y") {
+    if (status === "Yes") {
       return false;
     } else {
       return true;
@@ -122,8 +122,7 @@ export default function Candidate() {
             </tbody>
           </Table>
           <p className="col-md-6 mx-auto">
-            Note : You can't delete the candidate if they are assigned to a
-            Interviewer.
+            Note : Feedback can only be accessed if the Interview is Scheduled.
           </p>
           <div className="button5">
             <Stack gap={2} className="col-md-6 mx-auto">
