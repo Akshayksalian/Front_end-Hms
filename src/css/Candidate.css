@@ -1,0 +1,83 @@
+.candidate_h1{
+font-family: Poppins;
+font-size: 35px;
+font-style: bold;
+color: white;
+padding-left: 30px;
+font-weight: 700;
+line-height: 75px;
+
+text-align: left;
+vertical-align: Top
+
+}
+.gap{
+    height:10px;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  .container4 {
+    color: black;
+    background-color:   #454545 ;
+
+  }
+.body4{
+   
+    background-position: left,right;
+   
+    min-height: 100vh;
+
+}
+
+/* .row1{
+
+    width: 1400px;
+    display: flex;
+    padding: 10px;
+    height: 40px;
+    background: #fff;
+    border-radius: 15px;
+   
+}
+.row2{
+    width: 1400px;
+    display: flex;
+    padding: 10px;
+    height: 60px;
+    background: #fff;
+    border-radius: 15px;
+
+
+}
+.row3{
+    width:100px;
+    background: #fff;
+    border-radius: 15px;
+
+} */
+.candidate_button{
+    width: 100px;
+    height:30px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #E48700;
+    border-radius: 15px;
+   
+}
+.interview_button{
+    background-color: #E48700;
+    width: 100px;
+    height:30px;
+    font-size: 16px;
+    border-radius: 15px;
+    align-items: center;
+    
+
+}
+.button5{
+    padding-left: 600px;
+}
