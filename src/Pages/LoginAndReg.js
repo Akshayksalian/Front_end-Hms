@@ -141,7 +141,7 @@ export default function LoginAndReg() {
                       type="button"
                       onClick={(e) => submitLogin(e)}
                     >
-                      Submit
+                      Login
                     </button>
                   </form>
                 </div>

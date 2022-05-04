@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "../layouts/Header";
-import { Button, Stack } from "react-bootstrap";
+import { Button, Stack, Card, Form } from "react-bootstrap";
 
 export default function Questionaire() {
   const { id } = useParams();
@@ -62,8 +62,32 @@ export default function Questionaire() {
       });
   }, [url]);
 
+  const [feedback, setFeedback] = useState();
+  const url2 = "http://localhost:8080/hms/web/candidates/feedback";
+
+  function saveFeedback(e) {
+    console.log(id);
+    console.log(feedback);
+    axios
+      .put(url2, {
+        candidates_id: id,
+        feedback: feedback,
+      })
+      .then((res) => {
+        console.log(res.data);
+      });
+  }
+
+  function check(status) {
+    if (status === "Yes") {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   if (loading) return <h1>Loading....</h1>;
-  if (error) console.log(error);
+  if (error);
   if (data) {
     return (
       <div className="que">
@@ -158,16 +182,18 @@ export default function Questionaire() {
                       <p>{data.name}</p>
                     </div>
                   </div>
-                  <div className="mb-3">
-                    <h5>Mobile Number</h5>
-                    <div className="input-group">
+
+                  <div className="row">
+                    <div className="col-md-6 mb-3">
+                      <h5>Contact No</h5>
                       <p>{data.contact_no}</p>
                     </div>
+                    <div className="col-md-6 mb-3">
+                      <h5>Email</h5>
+                      <p>{data.email}</p>
+                    </div>
                   </div>
-                  <div className="mb-3">
-                    <h5>Email</h5>
-                    <p>{data.email}</p>
-                  </div>
+
                   <div className="row">
                     <div className="col-md-6 mb-3">
                       <h5>Skills</h5>
@@ -213,6 +239,41 @@ export default function Questionaire() {
                       <h5>Status</h5>
                       <p>{data.status ? `${data.status}` : "Not Assigned"}</p>
                     </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-md-6 mb-3">
+                      <h5>Feedback</h5>
+                      <p>{data.feedback}</p>
+                    </div>
+                  </div>
+                  <div className="col-md-6 mb-3">
+                    <Card
+                      border="success"
+                      className="mb-5"
+                      style={{ width: "29rem" }}
+                    >
+                      <Card.Body>
+                        <Card.Title>FeedBack</Card.Title>
+                        <Form.Group
+                          className="mb-3"
+                          controlId="exampleForm.ControlTextarea1"
+                        >
+                          <Form.Control
+                            as="textarea"
+                            rows={3}
+                            disabled={check(data.status)}
+                            value={feedback}
+                            onChange={(event) =>
+                              setFeedback(event.target.value)
+                            }
+                            onClick={(e) => saveFeedback(e)}
+                          />
+                        </Form.Group>
+                        <Button className="btn btn-dark rounded-pill ">
+                          Save
+                        </Button>
+                      </Card.Body>
+                    </Card>
                   </div>
                 </form>
               </div>

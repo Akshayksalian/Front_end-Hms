@@ -71,7 +71,8 @@ export default function Candidate() {
                 <th className="text-center">Status</th>
                 <th className="text-center">Interviewer Name</th>
                 <th className="text-center">Interviewer Date</th>
-                <th className="text-center">Feedback</th>
+                {/* <th className="text-center">Feedback</th> */}
+                {/* <th className="text-center"></th> */}
                 <th className="text-center">Que</th>
                 <th className="text-center">Delete</th>
               </tr>
@@ -96,14 +97,23 @@ export default function Candidate() {
                       ? `${item.interviewer.interviewerIdentity.availability}`
                       : "Not Scheduled"}
                   </td>
-                  <td className="text-center">
+                  {/* <td className="text-center">
                     <Form.Control
                       type="text"
                       className="text-center"
                       disabled={check(`${item.status}`)}
                       placeholder="feedback"
                     />
-                  </td>
+                  </td> */}
+                  {/* <td className="text-center">
+                    <Button
+                      variant="outline-info"
+                      disabled={check(`${item.status}`)}
+                      onClick={() => saveFeedback()}
+                    >
+                      Save
+                    </Button>
+                  </td> */}
                   <td className="text-center">
                     <a href={`/questionaire/${item.candidates_id}`}>
                       <Button variant="success">Next</Button>

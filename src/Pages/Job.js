@@ -1,15 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../layouts/Header";
+import { Button, Stack } from "react-bootstrap";
+import axios from "axios";
 
 export default function Job() {
   let navigate = useNavigate();
 
+  const [disable, setDisable] = useState(false);
+
+  const url = "http://localhost:8080/hms/web/candidates/fetchData";
+
+  function fetchData() {
+    axios.get(url).then((res) => {
+      console.log(res);
+    });
+    setDisable(true);
+  }
+
   return (
     <div className="home">
       <Header name="Job Roles That You Can Hire For..." />
+      <Stack gap={2} className="col-sm-4 mx-auto">
+        <Button
+          variant="warning"
+          className="interview_button mt-5"
+          disabled={disable}
+          onClick={() => fetchData()}
+        >
+          Update Candidates
+        </Button>
+        <p>
+          Note : This will update candidate details from CSV file to DataBase.
+        </p>
+      </Stack>
+
       <section className="py-5">
-        <div className="container px-4 px-lg-5 mt-5">
+        <div className="container px-4 px-lg-5 ">
           <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <div className="col mb-5">
               <div className="card h-100">
