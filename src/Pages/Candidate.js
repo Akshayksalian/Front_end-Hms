@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Button, Table, Stack, Form } from "react-bootstrap";
+import { Button, Table, Stack } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "../layouts/Header";
 
@@ -42,15 +42,6 @@ export default function Candidate() {
         console.warn(resp);
       });
     });
-  }
-
-  function check(status) {
-    console.log(status);
-    if (status === "Yes") {
-      return false;
-    } else {
-      return true;
-    }
   }
 
   if (loading) return <h1>Loading....</h1>;
@@ -116,12 +107,15 @@ export default function Candidate() {
                   </td> */}
                   <td className="text-center">
                     <a href={`/questionaire/${item.candidates_id}`}>
-                      <Button variant="success">Next</Button>
+                      <Button variant="success" className="rounded-pill">
+                        Next
+                      </Button>
                     </a>
                   </td>
                   <td className="text-center">
                     <Button
                       variant="danger"
+                      className="rounded-pill"
                       onClick={() => deleteUser(item.candidates_id)}
                     >
                       Delete
@@ -131,14 +125,11 @@ export default function Candidate() {
               ))}
             </tbody>
           </Table>
-          <p className="col-md-6 mx-auto">
-            Note : Feedback can only be accessed if the Interview is Scheduled.
-          </p>
           <div className="button5">
             <Stack gap={2} className="col-md-6 mx-auto">
               <Button
                 variant="primary"
-                className="interview_button my-1"
+                className="interview_button my-1 rounded-pill"
                 onClick={() => {
                   nav("/job");
                 }}

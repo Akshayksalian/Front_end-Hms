@@ -8,6 +8,8 @@ export default function Interview() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  // const [vis, setVis] = useState("show");
+
   const url1 = "http://localhost:8080/hms/web/interviewers/assign/" + id;
 
   const interviewPut = (event, availability, interviewers_id) => {
@@ -44,11 +46,16 @@ export default function Interview() {
       });
   }, [url]);
 
+  // if (data === null) {
+  //   setVis("hide");
+  // }
+
   if (loading) return <h1>Loading....</h1>;
   if (error) console.log(error);
 
   if (data) {
     return (
+      // <div className={vis}>
       <div className="container4">
         <Header name="Interviewers List ..." />
         <div className="main,body4"></div>
@@ -81,7 +88,7 @@ export default function Interview() {
                 <td className="text-center">
                   <Button
                     variant="success"
-                    className="candidate_button"
+                    className="candidate_button rounded-pill"
                     onClick={(event) =>
                       interviewPut(
                         event,
@@ -99,19 +106,39 @@ export default function Interview() {
         </Table>
 
         <div className="button5">
-          <Stack gap={2} className="col-md-6 mx-auto">
+          <div className="text-center mt-2">
             <Button
-              variant="primary"
-              className="interview_button my-1"
+              variant="secondary"
+              className="col-md-2 mx-auto rounded-pill"
               onClick={() => {
-                navigate("/job");
+                navigate(`/questionaire/${id}`);
               }}
             >
               Back
             </Button>
+          </div>
+
+          <Stack gap={2} className="col-md-6 mx-auto">
+            <Button
+              variant="primary"
+              className="interview_button my-1 rounded-pill"
+              onClick={() => {
+                navigate("/job");
+              }}
+            >
+              Back To Home
+            </Button>
           </Stack>
         </div>
       </div>
+      /* <div className={vis}>
+          <div className="container4">
+            <Header name="Interviewers List ..." />
+            <div className="main,body4"></div>
+            <h1>Note : No Interviewer's available</h1>
+          </div>
+        </div> */
+      // </div>
     );
   }
 }

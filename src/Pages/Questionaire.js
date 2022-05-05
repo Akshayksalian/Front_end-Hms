@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "../layouts/Header";
 import { Button, Stack, Card, Form } from "react-bootstrap";
+import Footer from "../layouts/Footer";
 
 export default function Questionaire() {
   const { id } = useParams();
@@ -66,8 +67,6 @@ export default function Questionaire() {
   const url2 = "http://localhost:8080/hms/web/candidates/feedback";
 
   function saveFeedback(e) {
-    console.log(id);
-    console.log(feedback);
     axios
       .put(url2, {
         candidates_id: id,
@@ -78,12 +77,28 @@ export default function Questionaire() {
       });
   }
 
-  function check(status) {
-    if (status === "Yes") {
+  function check(status, availability) {
+    let d1 = new Date(availability);
+    console.log(d1);
+    let d2 = new Date(Date().toLocaleString());
+    console.log(d2);
+    if (status === "Yes" && d1 <= d2) {
       return false;
     } else {
       return true;
     }
+  }
+
+  function deleteUser(id) {
+    fetch("http://localhost:8080/hms/web/candidates/" + id, {
+      method: "DELETE",
+    }).then((result) => {
+      result.json().then((resp) => {
+        console.warn(resp);
+      });
+    });
+    alert("Reject Successfull");
+    navigate("/job");
   }
 
   if (loading) return <h1>Loading....</h1>;
@@ -206,11 +221,11 @@ export default function Questionaire() {
                   </div>
                   <div className="row">
                     <div className="col-md-6 mb-3">
-                      <h5>Company Name</h5>
+                      <h5>Current Company Name</h5>
                       <p>{data.company_name}</p>
                     </div>
                     <div className="col-md-6 mb-3">
-                      <h5>Company Location</h5>
+                      <h5>Current Company Location</h5>
                       <p>{data.candidates_location}</p>
                     </div>
                   </div>
@@ -261,7 +276,10 @@ export default function Questionaire() {
                           <Form.Control
                             as="textarea"
                             rows={3}
-                            disabled={check(data.status)}
+                            disabled={check(
+                              data.status,
+                              data.interview_sceduled_date
+                            )}
                             value={feedback}
                             onChange={(event) =>
                               setFeedback(event.target.value)
@@ -283,8 +301,15 @@ export default function Questionaire() {
         <div className="button5">
           <Stack gap={0} className="col-md-4 mx-auto mb-5">
             <Button
+              variant="danger"
+              className="interview_button my-1 rounded-pill"
+              onClick={() => deleteUser(data.candidates_id)}
+            >
+              Reject
+            </Button>
+            <Button
               variant="success"
-              className="interview_button my-1"
+              className="interview_button my-1 rounded-pill"
               onClick={() => {
                 navigate(`/interview/${data.candidates_id}`);
               }}
@@ -293,7 +318,7 @@ export default function Questionaire() {
             </Button>
             <Button
               variant="dark"
-              className="interview_button my-1"
+              className="interview_button my-1 rounded-pill"
               onClick={() => {
                 navigate("/job");
               }}
@@ -302,6 +327,7 @@ export default function Questionaire() {
             </Button>
           </Stack>
         </div>
+        <Footer />
       </div>
     );
   }

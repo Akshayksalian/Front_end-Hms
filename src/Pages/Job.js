@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../layouts/Header";
 import { Button, Stack } from "react-bootstrap";
 import axios from "axios";
+import Footer from "../layouts/Footer";
 
 export default function Job() {
   let navigate = useNavigate();
@@ -28,10 +29,11 @@ export default function Job() {
           disabled={disable}
           onClick={() => fetchData()}
         >
-          Update Candidates
+          Update Candidates and Interviewers
         </Button>
         <p>
-          Note : This will update candidate details from CSV file to DataBase.
+          Note : This will update candidates and interviewers details from CSV
+          file to DataBase.
         </p>
       </Stack>
 
@@ -240,6 +242,7 @@ export default function Job() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

@@ -3,10 +3,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/LoginAndReg.css";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Job from "./Job";
 
 export default function LoginAndReg() {
   let nav = useNavigate();
-
   const [state, setState] = useState({
     login: "show col-lg-6 px-lg-4",
     register: "hide",
